@@ -5,6 +5,8 @@
   "summary": "Debugging configurations for Puppet services",
   "license": "Apache-2.0",
   "source": "https://github.com/Sharpie/puppet-pbug",
+  "project_page": "https://github.com/Sharpie/puppet-pbug",
+  "issues_url": "https://github.com/Sharpie/puppet-pbug/issues",
   "dependencies": [
     {
       "name": "puppetlabs/inifile",
