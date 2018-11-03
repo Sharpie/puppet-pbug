@@ -1,0 +1,21 @@
+---
+language: bash
+services: docker
+os: windows
+notifications:
+  email: false
+script: |
+  (
+    docker version
+
+    powershell -Command 'Write-Output $PSVersionTable'
+    powershell -Command 'Install-WindowsFeature -Name Hyper-V'
+    powershell -Command 'Get-WindowsFeature'
+    powershell -Command 'ConvertTo-Json @{experimental=$true} | Set-Content C:/ProgramData/Docker/config/daemon.json'
+    powershell -Command 'Restart-Service docker'
+
+    docker version
+    docker pull --platform=linux alpine
+    docker run --rm alpine cat /etc/os-release
+    true
+  )
