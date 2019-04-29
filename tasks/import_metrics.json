@@ -1,0 +1,10 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Import data from puppet_metrics_collector archives",
+  "parameters": {
+  },
+  "implementations": [
+    {"name": "import_metrics.rb"}
+  ]
+}
