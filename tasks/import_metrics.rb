@@ -80,6 +80,7 @@ module ImportMetrics
                   Integer,
                   'Port number to send output to.'],
                  ['--convert-to FORMAT',
+                  /graphite|influxdb/,
                   'Output format to convert to. One of:',
                   '  graphite (default)',
                   '  influxdb'],
