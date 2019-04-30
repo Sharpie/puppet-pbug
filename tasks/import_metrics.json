@@ -2,7 +2,32 @@
   "puppet_task_version": 1,
   "supports_noop": false,
   "description": "Import data from puppet_metrics_collector archives",
+  "input_method": "environment",
   "parameters": {
+    "pattern": {
+      "description": "Glob pattern of metric data files to load.",
+      "type": "String[1]"
+    },
+    "host": {
+      "description": "Hostname or IP address to send output to.",
+      "host": "Optional[String[1]]"
+    },
+    "port": {
+      "description": "Port number to send output to.",
+      "host": "Optional[Integer]"
+    },
+    "convert_to": {
+      "description": "Output format to convert to. One of: graphite (default), influxdb",
+      "type": "Optional[Enum[graphite, influxdb]]"
+    },
+    "server_tag": {
+      "description": "Server hostname to associate with parsed metrics.",
+      "host": "Optional[String]"
+    },
+    "influx_db": {
+      "description": "Name of InfluxDB database to send metrics to. Requires 'convert_to' to be set to 'influxdb'.",
+      "host": "Optional[String]"
+    }
   },
   "implementations": [
     {"name": "import_metrics.rb"}

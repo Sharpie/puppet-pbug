@@ -122,6 +122,18 @@ module ImportMetrics
         @optparser.on(store_option.curry[@options][option_name], *spec)
       end
 
+      # Now that sub-parsers have been defined for each option, use them
+      # to parse PT_ environment variables that are set if this script is
+      # invoked as a task.
+      @optparser.top.list.each do |option|
+        option_name = option.switch_name.gsub('-', '_')
+        task_var = "PT_#{option_name}"
+
+        next unless ENV.has_key?(task_var)
+
+        @options[option_name.to_sym] = option.parse(ENV[task_var], []).last
+      end
+
       args = argv.dup
       @optparser.parse!(args)
 
