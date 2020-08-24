@@ -1,0 +1,7 @@
+---
+fixtures:
+  repositories:
+    provision: "https://github.com/puppetlabs/provision.git"
+    puppet_agent: 'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
+  symlinks:
+    pbug: "#{source_dir}"
