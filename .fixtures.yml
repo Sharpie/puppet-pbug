@@ -1,7 +1,13 @@
 ---
 fixtures:
+  forge_modules:
+    #    facts:
+    #      repo: 'puppetlabs/facts'
+    #      ref: '0.6.0'
+    puppet_agent:
+      repo: 'puppetlabs/puppet_agent'
+      ref: '2.2.2'
   repositories:
-    provision: "https://github.com/puppetlabs/provision.git"
-    puppet_agent: 'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
+    provision: 'https://github.com/puppetlabs/provision.git'
   symlinks:
-    pbug: "#{source_dir}"
+    pbug: '#{source_dir}'

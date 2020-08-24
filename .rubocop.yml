@@ -40,6 +40,11 @@ Style/BlockDelimiters:
   Description: Prefer braces for chaining. Mostly an aesthetical choice. Better to
     be consistent then.
   EnforcedStyle: braces_for_chaining
+Style/BracesAroundHashParameters:
+  Description: |
+    Braces are actually required by Ruby 2.7 in order to disambiguate between
+    keword arguments and actual hash parameters. Removed in RuboCop v0.80.0.
+  Enabled: true
 Style/ClassAndModuleChildren:
   Description: Compact style reduces the required amount of indentation.
   EnforcedStyle: compact
@@ -57,8 +62,11 @@ Style/Lambda:
   Description: Prefer the keyword for easier discoverability.
   EnforcedStyle: literal
 Style/RegexpLiteral:
-  Description: Community preference. See https://github.com/voxpupuli/modulesync_config/issues/168
-  EnforcedStyle: percent_r
+  Description: |
+    Slashes are consistent for both the Ruby and Puppet Languages. %r{} is
+    useful when it avoids escaping slashes.
+  EnforcedStyle: slashes
+  AllowInnerSlashes: false
 Style/TernaryParentheses:
   Description: Checks for use of parentheses around ternary conditions. Enforce parentheses
     on complex expressions for better readability, but seriously consider breaking
@@ -75,6 +83,15 @@ Style/TrailingCommaInLiteral:
 Style/SymbolArray:
   Description: Using percent style obscures symbolic intent of array's contents.
   EnforcedStyle: brackets
+Layout/SpaceInsideHashLiteralBraces:
+  Description: Omit space inside hash literals to distinguish them from blocks.
+  EnforcedStyle: no_space
+Style/GuardClause:
+  Description: |
+    TaskHelper::Error exceptions require multiple lines to construct in order
+    to add details. Cramming these onto one line would result in code that is
+    harder to read.
+  Enabled: false
 RSpec/MessageSpies:
   EnforcedStyle: receive
 Style/Documentation:
