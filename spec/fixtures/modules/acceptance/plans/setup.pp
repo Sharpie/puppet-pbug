@@ -16,6 +16,8 @@ plan acceptance::setup {
               'compiler_pool_address' => $server.name,
               'version'               => '2019.8.5',
               'download_mode'         => 'direct',
-              'console_password'      => 'puppetlabs'})
+              'console_password'      => 'puppetlabs',
+              # Ensure changes to modules are picked up immediately.
+              'pe_conf_data'          => {'puppet_enterprise::profile::master::code_manager_auto_configure' => false}})
   }
 }
