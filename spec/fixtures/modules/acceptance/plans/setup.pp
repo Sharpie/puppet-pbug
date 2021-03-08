@@ -5,8 +5,18 @@ plan acceptance::setup {
   out::message('Installing PE...')
 
   $primary_servers.each |$server| {
-    # Needed by resources configured by the PE installer
-    run_command('yum install -y cronie', $server)
+    $node_facts = run_task('facts', $server).first.value
+
+    #debug::break()
+    # Packages needed by the PE installer
+    case $node_facts.get('os.family') {
+      'Debian': {
+        run_command('apt update && apt install -y --no-install-recommends ca-certificates cron curl gettext gnupg lsb-release', $server)
+      }
+      'RedHat': {
+        run_command('yum install -y ca-certificates cronie curl gettext', $server)
+      }
+    }
 
     run_plan('peadm::provision',
              {'master_host'           => $server,

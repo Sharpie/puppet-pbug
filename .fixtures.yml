@@ -9,6 +9,7 @@ fixtures:
     peadm: 'puppetlabs/peadm'
     apply_helpers: 'puppetlabs/apply_helpers'
     facts: 'puppetlabs/facts'
+    ruby_task_helper: 'puppetlabs/ruby_task_helper'
     service: 'puppetlabs/service'
     stdlib: 'puppetlabs/stdlib'
     format: 'puppet/format'

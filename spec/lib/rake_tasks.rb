@@ -5,8 +5,11 @@ namespace :pbug do
     modulepath = PuppetLitmus::RakeHelper::DEFAULT_CONFIG_DATA['modulepath']
 
     desc 'Provision test nodes for acceptance tests'
-    task :provision do
-      sh "bolt plan run --modulepath #{modulepath} acceptance::provision"
+    task :provision, [:provisioner, :platform] do |t, args|
+      provisioner = args.provisioner || 'docker_exp'
+      platform = args.platform || 'centos-7-x86_64'
+
+      sh "bolt plan run --modulepath #{modulepath} acceptance::provision provisioner=#{provisioner} platform=#{platform}"
     end
 
     desc 'Set up test nodes for acceptance tests'
@@ -16,5 +19,5 @@ namespace :pbug do
   end
 
   desc 'Run acceptance tests'
-  task :acceptance => ['pbug:acceptance:provision', 'pbug:acceptance:setup']
+  task acceptance: ['pbug:acceptance:provision', 'pbug:acceptance:setup']
 end
