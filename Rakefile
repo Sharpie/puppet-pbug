@@ -86,3 +86,4 @@ EOM
   end
 end
 
+require_relative "spec/lib/rake_tasks"

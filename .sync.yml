@@ -6,6 +6,12 @@ appveyor.yml:
 .gitlab-ci.yml:
   delete: true
 
+.gitignore:
+  paths:
+    - '!/spec/fixtures/modules/'
+    - '/spec/fixtures/modules/*'
+    - '!/spec/fixtures/modules/acceptance/'
+
 .rubocop.yml:
   default_configs:
     Layout/SpaceInsideHashLiteralBraces:
@@ -28,6 +34,10 @@ appveyor.yml:
         useful when it avoids escaping slashes.
       EnforcedStyle: slashes
       AllowInnerSlashes: false
+
+Rakefile:
+  extras:
+    - 'require_relative "spec/lib/rake_tasks"'
 
 spec/spec_helper.rb:
   mock_with: ':rspec'

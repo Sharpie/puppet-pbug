@@ -1,12 +1,21 @@
 ---
 fixtures:
   forge_modules:
-    #    facts:
-    #      repo: 'puppetlabs/facts'
-    #      ref: '0.6.0'
-    puppet_agent:
-      repo: 'puppetlabs/puppet_agent'
-      ref: '2.2.2'
+    # Dependencies
+    inifile: 'puppetlabs/inifile'
+    archive: 'puppet/archive'
+
+    # Acceptance testing
+    peadm: 'puppetlabs/peadm'
+    apply_helpers: 'puppetlabs/apply_helpers'
+    facts: 'puppetlabs/facts'
+    service: 'puppetlabs/service'
+    stdlib: 'puppetlabs/stdlib'
+    format: 'puppet/format'
+    node_manager: 'WhatsARanjit/node_manager'
+
+    # Debugging
+    debug: 'nwops-debug'
   repositories:
     provision: 'https://github.com/puppetlabs/provision.git'
   symlinks:
