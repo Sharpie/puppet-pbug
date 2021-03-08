@@ -8,56 +8,44 @@
   "project_page": "https://github.com/Sharpie/puppet-pbug",
   "issues_url": "https://github.com/Sharpie/puppet-pbug/issues",
   "dependencies": [
-    {
-      "name": "puppetlabs/inifile",
-      "version_requirement": ">= 2.4.0 < 3.0.0"
-    },
-    {
-      "name": "puppet/archive",
-      "version_requirement": ">= 3.2.1 < 4.0.0"
-    }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
-        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "14.04",
-        "16.04",
         "18.04"
       ]
     },
     {
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
-        "11",
         "12"
       ]
     }
@@ -65,7 +53,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.10.0 < 7.0.0"
+      "version_requirement": ">= 6.16.0 < 8.0.0"
     }
   ],
   "pdk-version": "2.0.0",
