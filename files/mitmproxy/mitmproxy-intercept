@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+fail() {
+  printf 'ERROR: %s\n' "${1?}" >&2
+  exit 1
+}
+
+help() {
+  printf 'usage: mitmproxy-intercept add|rm comma,separated,list,of,ports'
+}
+
+[[ $# -eq 2 ]] || fail "$(printf '%s\n%s' "Incorrect number of arguments: ${#}" "$(help)")"
+[[ -e /sbin/iptables ]] || fail 'This script requires /sbin/iptables.'
+
+declare action
+case $1 in
+  add)
+    action='-A'
+    ;;
+  rm)
+    action='-D'
+    ;;
+esac
+
+primary_ip="$(/opt/puppetlabs/bin/facter networking.ip)"
+
+# Redirect traffic originating from the node, but not generated
+# by the mitmproxy user to mitmproxy.
+/sbin/iptables -t nat "${action}" OUTPUT \
+  --match owner ! --uid-owner mitmproxy \
+  -p tcp --dst "${primary_ip},127.0.0.0/8" \
+  --match multiport --dports "$2" \
+  -j REDIRECT --to-port 9000

@@ -8,6 +8,10 @@
   "project_page": "https://github.com/Sharpie/puppet-pbug",
   "issues_url": "https://github.com/Sharpie/puppet-pbug/issues",
   "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 6.6.0"
+    }
   ],
   "operatingsystem_support": [
     {

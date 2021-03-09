@@ -1,0 +1,34 @@
+<%- | Optional[String] $systemd_version = undef | -%>
+[Unit]
+Description=mitmproxy SSL debugger
+
+[Service]
+Type=simple
+# To change the intercepted ports, use `systemctl edit mitmproxy`
+# to create a drop-in unit.
+Environment=INTERCEPT_PORTS=4433,8081,8140,8143
+<% if (versioncmp(String($systemd_version), '231') >= 0) { -%>
+User=mitmproxy
+ExecStart=/usr/local/bin/mitmweb \
+  --certs /home/mitmproxy/cert_bundle.pem \
+  --set client_certs=/home/mitmproxy/cert_bundle.pem \
+  --ssl-insecure \
+  --mode transparent \
+  --listen-port 9000 \
+  --web-host 0.0.0.0 \
+  --web-port 9080
+ExecStartPost=+/usr/local/bin/mitmproxy-intercept add $INTERCEPT_PORTS
+ExecStopPost=-+/usr/local/bin/mitmproxy-intercept rm $INTERCEPT_PORTS
+<% } else { -%>
+<%# SystemD versions older than 231 do not support the '+' prefix for privileged execution -%>
+ExecStart=/sbin/runuser -u mitmproxy -- /usr/local/bin/mitmweb \
+  --certs /home/mitmproxy/cert_bundle.pem \
+  --set client_certs=/home/mitmproxy/cert_bundle.pem \
+  --ssl-insecure \
+  --mode transparent \
+  --listen-port 9000 \
+  --web-host 0.0.0.0 \
+  --web-port 9080
+ExecStartPost=/usr/local/bin/mitmproxy-intercept add $INTERCEPT_PORTS
+ExecStopPost=-/usr/local/bin/mitmproxy-intercept rm $INTERCEPT_PORTS
+<% } -%>
