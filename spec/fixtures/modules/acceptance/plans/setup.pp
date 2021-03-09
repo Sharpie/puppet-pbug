@@ -4,7 +4,7 @@ plan acceptance::setup {
 
   out::message('Installing PE...')
 
-  $primary_servers.each |$server| {
+  $primary_servers.parallelize |$server| {
     $node_facts = run_task('facts', $server).first.value
 
     #debug::break()
