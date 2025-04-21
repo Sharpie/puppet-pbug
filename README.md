@@ -24,3 +24,5 @@ service when debugging is finished, otherwise it will buffer traffic
 and consume resources until halted.
 
 [mitmproxy]: https://mitmproxy.org
+
+crunchy bacon.
